@@ -22,11 +22,18 @@ namespace OOP_Project
 
             bool save = false;
 
+            Console.Clear();
             while (true)
             {
-                Console.WriteLine("What to do?");
+                Console.Write("Firearm manager v.0.1.0 >");
                 String input = Console.ReadLine();
-                if(input == "getfirearms")
+                String[] inputs = input.Split(' ');
+                if(inputs.Length < 1)
+                {
+
+                }
+
+                if (inputs[0] == "get")
                 {
                     List<string> list = fm.getFirearmNames();
                     foreach (string name in list)

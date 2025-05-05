@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace OOP_Project.Utils.DataManagers
 {
-    public class FirearmManager : BaseManager
+    public class CaliberManager : BaseManager
     {
-        int idList = 0; //used ids.
+        int idList = 0;
         CompoundContainer settings;
         bool settingsChecked = false;
         List<CompoundContainer> compoundContainers = new List<CompoundContainer>();
@@ -43,11 +43,10 @@ namespace OOP_Project.Utils.DataManagers
             return data;
         }
 
-        public void addFirearm(String name)
+        public void addCaliber(String caliber)
         {
             CompoundContainer container = new CompoundContainer();
-            container.Add(new BaseContainer("name", name));
-            container.Add(new BaseContainer("caliber", "9mm"));
+            container.Add(new BaseContainer("caliber", caliber));
             container.Add(new BaseContainer("id", idList++));
             getSettings().setValue("id", idList.ToString());
             compoundContainers.Add(container);
@@ -55,15 +54,15 @@ namespace OOP_Project.Utils.DataManagers
 
         public override string getName()
         {
-            return "firearms";
+            return "caliber";
         }
 
-        public List<string> getFirearmNames()
+        public List<string> getCalibers()
         {
             List<string> data = new List<string>();
             foreach(CompoundContainer container in compoundContainers)
             {
-                data.Add(container.getValue("name"));
+                data.Add(container.getValue("caliber"));
             }
             return data;
         }
