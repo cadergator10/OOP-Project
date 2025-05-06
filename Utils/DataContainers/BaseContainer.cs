@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_Project.Utils.DataContainers
 {
+    /// <summary>
+    /// Author: Cade Kiser
+    /// ID: 801341186
+    /// </summary>
     public class BaseContainer //Capable of holding different datatypes
     {
         //Values in [] = name

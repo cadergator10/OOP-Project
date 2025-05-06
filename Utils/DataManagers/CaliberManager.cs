@@ -8,6 +8,10 @@ using System.Xml.Linq;
 
 namespace OOP_Project.Utils.DataManagers
 {
+    /// <summary>
+    /// Author: Cade Kiser
+    /// ID: 801341186
+    /// </summary>
     public class CaliberManager : BaseManager
     {
 

@@ -8,6 +8,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OOP_Project.Utils
 {
+    /// <summary>
+    /// Author: Cade Kiser
+    /// ID: 801341186
+    /// </summary>
     public class DataManagement
     {
         public static readonly string FILELOC = Directory.GetCurrentDirectory() + "/firearmData.txt";

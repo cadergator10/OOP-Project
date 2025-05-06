@@ -4,6 +4,10 @@ using OOP_Project.Utils.DataManagers;
 
 namespace OOP_Project
 {
+    /// <summary>
+    /// Author: Cade Kiser
+    /// ID: 801341186
+    /// </summary>
     internal class Program
     {
         //Whether debug data is printed to console

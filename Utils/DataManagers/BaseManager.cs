@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace OOP_Project.Utils.DataManagers
 {
+    /// <summary>
+    /// Author: Cade Kiser
+    /// ID: 801341186
+    /// </summary>
     public abstract class BaseManager
     {
         protected CompoundContainer settings;
