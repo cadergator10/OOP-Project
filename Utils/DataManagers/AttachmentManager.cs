@@ -4,49 +4,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace OOP_Project.Utils.DataManagers
 {
-    public class CaliberManager : BaseManager
+    public class AttachmentManager : BaseManager
     {
 
-        public bool addCaliber(string caliber)
+        public bool addAttachment(string name)
         {
-            if (compoundContainers.Select(x => x.getValue("caliber")).Contains(caliber))
+            if (compoundContainers.Select(x => x.getValue("name")).Contains(name))
                 return false;
             CompoundContainer container = new CompoundContainer();
-            container.Add(new BaseContainer("caliber", caliber));
+            container.Add(new BaseContainer("name", name));
             container.Add(new BaseContainer("id", idList++));
             getSettings().setValue("id", idList.ToString());
+            //Update all current guns
+            Program.fm.attachmentUpdate(false, container.getValue("id"));
             compoundContainers.Add(container);
             return true;
         }
 
-        public bool removeCaliber(string id)
+        public bool removeAttachment(string id)
         {
             CompoundContainer container = compoundContainers.FirstOrDefault(x => x.getValue("id") == id);
             if (container != null)
             {
                 compoundContainers.Remove(container);
-                Program.fm.removeFirearms(x => x.getValue("caliber") == id);
+                Program.fm.attachmentUpdate(true, id);
             }
             return container != null;
         }
 
         public override string getName()
         {
-            return "caliber";
+            return "attachments";
         }
 
-        private List<CompoundContainer> getCaliberRaw(string name)
+        private List<CompoundContainer> getAttachmentRaw(string name)
         {
             if (name != null)
             {
                 List<CompoundContainer> data = new List<CompoundContainer>();
                 foreach (CompoundContainer container in compoundContainers)
                 {
-                    if (container.getValue("caliber").ToLower().Contains(name.ToLower()))
+                    if (container.getValue("name").ToLower().Contains(name.ToLower()))
                         data.Add(container);
                 }
                 return data;
@@ -54,17 +55,17 @@ namespace OOP_Project.Utils.DataManagers
             return compoundContainers;
         }
 
-        public List<string> getCalibers(string name)
+        public List<string> getAttachments(string name)
         {
-            return getCaliberRaw(name).Select(x => $"[{x.getValue("id")}] {x.getValue("caliber")}").ToList();
+            return getAttachmentRaw(name).Select(x => $"[{x.getValue("id")}] {x.getValue("name")}").ToList();
         }
-        public List<string> getCaliberIDs(string name)
+        public List<string> getAttachmentIDs(string name)
         {
-            return getCaliberRaw(name).Select(x => x.getValue("id")).ToList();
+            return getAttachmentRaw(name).Select(x => x.getValue("id")).ToList();
         }
         public CompoundContainer getFirst(string name)
         {
-            List<CompoundContainer> data = getCaliberRaw(name);
+            List<CompoundContainer> data = getAttachmentRaw(name);
             if (data.Count == 0)
                 return null;
             return data[0];

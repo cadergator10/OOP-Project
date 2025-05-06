@@ -10,7 +10,7 @@ namespace OOP_Project.Utils
 {
     public class DataManagement
     {
-        static string defaulter = "default";
+        public static readonly string FILELOC = Directory.GetCurrentDirectory() + "/firearmData.txt";
 
         static List<BaseManager> managers;
 
@@ -18,14 +18,16 @@ namespace OOP_Project.Utils
         {
             managers = new List<BaseManager>(); //initialize all the managers
             managers.Add(new FirearmManager());
+            managers.Add(new CaliberManager());
+            managers.Add(new AttachmentManager());
         }
 
         public static void Save()
         {
             if(Program.debug)
-                Console.WriteLine("Saving data to " + Directory.GetCurrentDirectory() + "/firearmData.txt");
+                Console.WriteLine("Saving data to " + FILELOC);
 
-            using (StreamWriter reader = new StreamWriter(Directory.GetCurrentDirectory() + "/firearmData.txt"))
+            using (StreamWriter reader = new StreamWriter(FILELOC))
             {
                 foreach(BaseManager tempmanager in managers)
                 {
@@ -43,7 +45,7 @@ namespace OOP_Project.Utils
         public static void Load()
         {
             if (Program.debug)
-                Console.WriteLine("Loading data from " + Directory.GetCurrentDirectory() + "/firearmData.txt");
+                Console.WriteLine("Loading data from " + FILELOC);
             
             //return File.ReadAllText(Directory.GetCurrentDirectory() + "/firearmData.txt");
             //FileStream file = File.Open(Directory.GetCurrentDirectory() + "/firearmData.txt", FileMode.Open);
@@ -65,9 +67,9 @@ namespace OOP_Project.Utils
             //}
 
             //file.Close();
-            if (!File.Exists(Directory.GetCurrentDirectory() + "/firearmData.txt"))
-                File.Create(Directory.GetCurrentDirectory() + "/firearmData.txt");
-            using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + "/firearmData.txt"))
+            if (!File.Exists(FILELOC))
+                File.Create(FILELOC).Close();
+            using (StreamReader reader = new StreamReader(FILELOC))
             {
                 while (reader.Peek() >= 0)
                 {

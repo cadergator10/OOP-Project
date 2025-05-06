@@ -25,8 +25,7 @@ namespace OOP_Project.Utils.DataContainers
             if(containers.Count > 0)
             {
                 String str = "";
-                str += containers[0].Encode();
-                for (int i = 1; i < containers.Count; i++)
+                for (int i = 0; i < containers.Count; i++)
                 {
                     str += containers[i].Encode();
                     str += '/';
@@ -58,6 +57,18 @@ namespace OOP_Project.Utils.DataContainers
                     break;
                 }
             }
+        }
+        public void Remove(string name)
+        {
+            foreach (BaseContainer container in containers)
+            {
+                if (container.name == name)
+                    containers.Remove(container);
+            }
+        }
+        public List<BaseContainer> getAll()
+        {
+            return containers;
         }
     }
 }
